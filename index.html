@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Personal Website</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fff0f6;
+    color: #7f294f;
+}
+
+header {
+    background: white;
+    padding: 20px;
+    text-align: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    background: #e98caf;
+    padding: 12px 20px;
+    border-radius: 20px;
+    margin: 5px;
+    display: inline-block;
+}
+
+nav a:hover {
+    background: #9d4268;
+}
+
+.page {
+    display: none;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.page:target {
+    display: block;
+}
+
+#home {
+    display: block;
+}
+
+h1 {
+    color: #9d4268;
+}
+
+img {
+    width: 250px;
+    height: 300px;
+    object-fit: cover;
+    border: 5px solid white;
+    border-radius: 15px;
+}
+
+/* About Me */
+.info {
+    background: white;
+    padding: 15px;
+    margin: 10px auto;
+    border-radius: 12px;
+    max-width: 400px;
+    text-align: left;
+}
+
+/* Contact Me */
+.contact {
+    background: white;
+    padding: 20px;
+    margin: 10px auto;
+    border-radius: 12px;
+    max-width: 400px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h2>♡ My Personal Website ♡</h2>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About Me</a>
+        <a href="#contact">Contact Me</a>
+    </nav>
+</header>
+
+<!-- FIRST PAGE: HOME -->
+<section id="home" class="page">
+    <h1>Welcome to My Personal Website!</h1>
+
+    <img src="my-picture.jpg" alt="My Picture">
+
+    <p>Welcome to my personal website!</p>
+</section>
+
+<!-- SECOND PAGE: ABOUT ME -->
+<section id="about" class="page">
+    <h1>About Me</h1>
+
+    <img src="my-picture.jpg" alt="My Picture">
+
+    <div class="info"><b>Name:</b>Arian Kate M. Estanioso</div>
+    <div class="info"><b>Age:</b>15</div>
+    <div class="info"><b>Address:</b>Purok Mary Help,Del-Pilar St. Davao City</div>
+    <div class="info"><b>Talent:</b> Dancing,writing, and  singing,</div>
+    <div class="info"><b>Hobbies:</b>Drawing, watching movies, reading stories, and playing badminton.</div>
+    <div class="info"><b>Life Motto:</b>Do the best you can,until you know better. Then when you know better,do better</div>
+</section>
+
+<!-- THIRD PAGE: CONTACT ME -->
+<section id="contact" class="page">
+    <h1>Contact Me</h1>
+
+    <div class="contact"><b>Contact #:</b>09306426843</div>
+    <div class="contact"><b>Email:</b>ariankateestanioso8@gmail.com</div>
+
+    <div class="contact"><b>Website:</b>www.ariankate.estanioso.com</div>
+</section>
+
+</body>
+</html>
