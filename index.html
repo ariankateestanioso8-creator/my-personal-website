@@ -1,357 +1,629 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Personal Website</title><style>
 
-    <title>My Personal Website</title>
+/* GENERAL DESIGN */
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+* {
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #ffe3f0, #fff7fb, #ffc5df);
-            margin: 0;
-            padding: 0;
-            color: #71304f;
-            position: relative;
-            overflow-x: hidden;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        /* STATIONARY BACKGROUND WAVES */
-        body::before,
-        body::after {
-            content: "";
-            position: fixed;
-            width: 180px;
-            height: 180px;
-            z-index: 0;
-            pointer-events: none;
-            background: linear-gradient(
-                135deg,
-                #ff1685,
-                #ff8fbd,
-                #ffc5df
-            );
-        }
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #ffe3f0, #fff7fb, #ffc5df);
+    margin: 0;
+    padding: 0;
+    color: #71304f;
+    position: relative;
+    overflow-x: hidden;
+}
 
-        /* UPPER RIGHT WAVE */
-        body::before {
-            top: -65px;
-            right: -65px;
-            border-radius: 30% 70% 65% 35% / 35% 35% 65% 65%;
-        }
+/* BACKGROUND WAVES */
 
-        /* LOWER LEFT WAVE */
-        body::after {
-            bottom: -65px;
-            left: -65px;
-            border-radius: 70% 30% 35% 65% / 65% 65% 35% 35%;
-        }
+body::before,
+body::after {
+    content: "";
+    position: fixed;
+    width: 180px;
+    height: 180px;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(135deg, #ff1685, #ff8fbd, #ffc5df);
+}
 
-        /* KEEP CONTENT ABOVE BACKGROUND WAVES */
-        header, nav, section {
-            position: relative;
-            z-index: 1;
-        }
+body::before {
+    top: -65px;
+    right: -65px;
+    border-radius: 30% 70% 65% 35% / 35% 35% 65% 65%;
+}
 
-        /* HEADER */
-        header {
-            background: linear-gradient(120deg, #ff1685, #ed4fa0, #ff1685);
-            color: white;
-            text-align: center;
-            padding: 40px 15px;
-            border-bottom: 7px solid #c90062;
-            box-shadow: 0 8px 20px rgba(201, 0, 98, 0.25);
-            position: relative;
-            overflow: hidden;
-        }
+body::after {
+    bottom: -65px;
+    left: -65px;
+    border-radius: 70% 30% 35% 65% / 65% 65% 35% 35%;
+}
 
-        /* STATIONARY WAVES INSIDE HEADER */
-        header::before,
-        header::after {
-            content: "";
-            position: absolute;
-            width: 110px;
-            height: 110px;
-            background: linear-gradient(
-                135deg,
-                #ff8fbd,
-                #ffc5df
-            );
-            pointer-events: none;
-            z-index: 0;
-        }
+/* FLOATING DECORATIONS */
 
-        /* HEADER UPPER RIGHT WAVE */
-        header::before {
-            top: -45px;
-            right: -35px;
-            border-radius: 30% 70% 65% 35% / 35% 35% 65% 65%;
-        }
+.floating-decor {
+    position: fixed;
+    z-index: 2;
+    pointer-events: none;
+    color: #ff69a6;
+    opacity: 0.45;
+    animation: floatDecor 5s ease-in-out infinite;
+}
 
-        /* HEADER LOWER LEFT WAVE */
-        header::after {
-            bottom: -45px;
-            left: -35px;
-            border-radius: 70% 30% 35% 65% / 65% 65% 35% 35%;
-        }
+.decor-one {
+    top: 22%;
+    left: 5%;
+    font-size: 25px;
+}
 
-        header h1 {
-            position: relative;
-            z-index: 1;
-            letter-spacing: 3px;
-            text-shadow: 2px 3px 5px rgba(120, 0, 55, 0.25);
-            animation: floatTitle 3s ease-in-out infinite;
-        }
+.decor-two {
+    top: 45%;
+    right: 5%;
+    font-size: 22px;
+    animation-delay: 1s;
+}
 
-        /* NAVIGATION */
-        nav {
-            background-color: #ffd0e5;
-            text-align: center;
-            padding: 20px 10px;
-            border-bottom: 3px solid #ff8fbd;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: nowrap;
-        }
+.decor-three {
+    bottom: 18%;
+    right: 12%;
+    font-size: 28px;
+    animation-delay: 2s;
+}
 
-        nav a {
-            display: inline-block;
-            color: #c90062;
-            text-decoration: none;
-            margin: 0;
-            font-weight: bold;
-            padding: 13px 25px;
-            border: 2px solid #ff1685;
-            border-radius: 15px;
-            background-color: #ffffff;
-            box-shadow: 0 5px 0 #f5a0c5;
-            transition: 0.3s;
-        }
+.decor-four {
+    top: 70%;
+    left: 10%;
+    font-size: 20px;
+    animation-delay: 1.5s;
+}
 
-        nav a:hover {
-            background-color: #ff1685;
-            color: white;
-            transform: translateY(-5px);
-            box-shadow: 0 9px 15px rgba(201, 0, 98, 0.25);
-        }
+@keyframes floatDecor {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
 
-        /* PAGE BOXES */
-        section {
-            background: linear-gradient(145deg, #ffffff, #fff0f7);
-            margin: 45px auto;
-            padding: 40px;
-            max-width: 800px;
-            min-height: 300px;
-            border: 3px solid #ffacd0;
-            border-radius: 25px;
-            box-shadow: 0 10px 25px rgba(201, 0, 98, 0.12);
-        }
+    50% {
+        transform: translateY(-15px) rotate(10deg);
+    }
+}
 
-        /* DECORATIVE OUTER FRAME */
-        #about, #contact {
-            border: 5px double #ff1685;
-            outline: 3px solid #ffacd0;
-            outline-offset: 8px;
-            border-radius: 28px;
-            box-shadow:
-                0 10px 25px rgba(201, 0, 98, 0.18),
-                inset 0 0 15px #ffe3f0;
-        }
+/* HEADER */
 
-        /* HEADINGS */
-        h2 {
-            color: #e60070;
-            border-bottom: 3px solid #ffacd0;
-            padding-bottom: 12px;
-        }
+header {
+    background: linear-gradient(120deg, #ff1685, #ed4fa0, #ff1685);
+    color: white;
+    text-align: center;
+    padding: 40px 15px;
+    border-bottom: 7px solid #c90062;
+    box-shadow: 0 8px 20px rgba(201, 0, 98, 0.25);
+    position: relative;
+    overflow: hidden;
+}
 
-        p {
-            line-height: 1.8;
-        }
+header::before,
+header::after {
+    content: "";
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    background: linear-gradient(135deg, #ff8fbd, #ffc5df);
+    pointer-events: none;
+}
 
-        strong {
-            color: #d00065;
-        }
+header::before {
+    top: -45px;
+    right: -35px;
+    border-radius: 30% 70% 65% 35% / 35% 35% 65% 65%;
+}
 
-        /* PAGE DISPLAY */
-        .page {
-            display: none;
-        }
+header::after {
+    bottom: -45px;
+    left: -35px;
+    border-radius: 70% 30% 35% 65% / 65% 65% 35% 35%;
+}
 
-        .page.active {
-            display: block;
-            animation: fadeIn 0.8s ease;
-        }
+/* BOUNCING WEBSITE TITLE */
 
-        /* ANIMATIONS */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(25px);
-            }
+header h1 {
+    position: relative;
+    z-index: 1;
+    letter-spacing: 3px;
+    text-shadow: 2px 3px 5px rgba(120, 0, 55, 0.25);
+    animation: titleBounce 1.5s ease-in-out infinite;
+    will-change: transform;
+}
 
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+@keyframes titleBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
 
-        @keyframes floatTitle {
-            0%, 100% {
-                transform: translateY(0);
-            }
+    30% {
+        transform: translateY(-18px);
+    }
 
-            50% {
-                transform: translateY(-7px);
-            }
-        }
+    50% {
+        transform: translateY(0);
+    }
 
-        /* MOBILE DESIGN */
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 25px;
-            }
+    70% {
+        transform: translateY(-8px);
+    }
+}
 
-            nav {
-                gap: 6px;
-                padding: 15px 5px;
-            }
+/* NAVIGATION */
 
-            nav a {
-                margin: 0;
-                padding: 11px 10px;
-                font-size: 12px;
-            }
+nav {
+    background-color: #ffd0e5;
+    text-align: center;
+    padding: 20px 10px;
+    border-bottom: 3px solid #ff8fbd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 3;
+}
 
-            section {
-                margin: 30px 22px;
-                padding: 25px;
-            }
+nav a {
+    display: inline-block;
+    color: #c90062;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 13px 25px;
+    border: 2px solid #ff1685;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: 0 5px 0 #f5a0c5;
+    transition: 0.3s;
+}
 
-            body::before,
-            body::after {
-                width: 100px;
-                height: 100px;
-            }
+nav a:hover {
+    background-color: #ff1685;
+    color: white;
+    transform: translateY(-5px);
+    box-shadow: 0 9px 15px rgba(201, 0, 98, 0.25);
+}
 
-            header::before,
-            header::after {
-                width: 75px;
-                height: 75px;
-            }
-        }
-    </style>
-</head>
+/* SECTIONS */
 
-<body>
+section {
+    background: linear-gradient(145deg, #ffffff, #fff0f7);
+    margin: 45px auto;
+    padding: 40px;
+    max-width: 800px;
+    min-height: 300px;
+    border: 3px solid #ffacd0;
+    border-radius: 25px;
+    box-shadow: 0 10px 25px rgba(201, 0, 98, 0.12);
+    position: relative;
+    z-index: 1;
+}
 
-    <!-- HEADER -->
-    <header>
-        <h1>MY PERSONAL WEBSITE</h1>
-    </header>
+/* ABOUT AND CONTACT DOUBLE BORDERS */
 
-    <!-- NAVIGATION -->
-    <nav>
-        <a href="#home" onclick="showPage('home')">Home</a>
-        <a href="#about" onclick="showPage('about')">About Me</a>
-        <a href="#contact" onclick="showPage('contact')">Contact Me</a>
-    </nav>
+#about,
+#contact {
+    border: 5px double #ff1685;
+    outline: 3px solid #ffacd0;
+    outline-offset: 8px;
+    border-radius: 28px;
+    box-shadow:
+        0 10px 25px rgba(201, 0, 98, 0.18),
+        inset 0 0 15px #ffe3f0;
+}
 
-    <!-- HOME PAGE -->
-    <section id="home" class="page active">
+/* HEADINGS */
 
-        <h2>Welcome to My Personal Website!</h2>
+h2 {
+    color: #e60070;
+    border-bottom: 3px solid #ffacd0;
+    padding-bottom: 12px;
+}
 
-        <p>
-            I welcome you to explore my personal website, where I
-            share my interests, abilities, experiences, and ambitions.
-            I hope this website gives you a better understanding of who I am.
-        </p>
+p {
+    line-height: 1.8;
+}
 
-    </section>
+strong {
+    color: #d00065;
+}
 
-    <!-- ABOUT ME PAGE -->
-    <section id="about" class="page">
+/* CUTE HEADING ACCENTS */
 
-        <h2>ABOUT ME</h2>
+.home-box h2::after,
+#about > h2::after,
+#contact > h2::after {
+    content: "  ♡";
+    color: #ff69a6;
+    font-size: 20px;
+}
 
-        <p>
-            Get to know more about me through the following information.
-        </p>
+/* NAME DESIGN */
 
-        <p><strong>Age:15</strong></p>
+.my-name {
+    text-align: center;
+    color: #c90062;
+    font-family: Georgia, serif;
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 1.3;
+    margin: 10px 0;
+    border-bottom: none;
+    text-shadow: 2px 3px 5px rgba(201, 0, 98, 0.15);
+}
 
-        <p><strong>Address:Purok Mary Help,Davao,City</strong> [</p>
+/* WELCOME MESSAGE */
 
-        <p>
-            <strong>Talent:</strong>
-            My talents are singing and dancing.
-        </p>
+.welcome-text {
+    text-align: center;
+    color: #71304f;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 5px;
+}
 
-        <p>
-            <strong>Hobbies:</strong>
-            My hobbies include watching movies, reading books,
-            playing badminton, listening to music, and doing
-            household chores.
-        </p>
+/* CUTE DIVIDER */
 
-        <p>
-            <strong>Future Profession:</strong>
-            I dream of becoming a nurse in the future because
-            I want to take care of people and help those who
-            need medical attention.
-        </p>
+.cute-divider {
+    text-align: center;
+    color: #ff69a6;
+    font-size: 19px;
+    letter-spacing: 8px;
+    margin: 12px 0;
+}
 
-        <p>
-            <strong>Life Motto:</strong>
-            "Do the best you can until you know better.
-            Then when you know better, do better."
-        </p>
+/* INTRODUCTION */
 
-    </section>
+.intro-text {
+    font-size: 17px;
+    font-weight: normal;
+    line-height: 1.8;
+    text-align: justify;
+    color: #71304f;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
 
-    <!-- CONTACT ME PAGE -->
-    <section id="contact" class="page">
+/* HOME BOXES */
 
-        <h2>CONTACT ME</h2>
+.home-box {
+    background: linear-gradient(145deg, #fff0f7, #ffe3f0);
+    border: 2px solid #ffacd0;
+    border-radius: 20px;
+    padding: 25px;
+    margin: 25px 0;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(201, 0, 98, 0.10);
+    transition: 0.3s ease;
+}
 
-        
-            
-        <p>
-            <strong>Email:ariankate.estanioso8102011@gmail.com</strong>
-            
-        </p>
+.home-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(201, 0, 98, 0.18);
+}
 
-        <p>
-            <strong>Facebook:Arian Kate Estanioso</strong>
-            
-        </p>
+/* HOME BOX HEADINGS */
 
-    </section>
+.home-box h2 {
+    border-bottom: none;
+    color: #e60070;
+}
 
-    <!-- JAVASCRIPT -->
-    <script>
+/* BUTTONS */
 
-        function showPage(pageId) {
+.home-box button {
+    background: #ff1685;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
 
-            let pages = document.querySelectorAll(".page");
+.home-box button:hover {
+    background: #c90062;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 12px rgba(201, 0, 98, 0.25);
+}
 
-            pages.forEach(function(page) {
-                page.classList.remove("active");
-            });
+/* PAGE DISPLAY */
 
-            document.getElementById(pageId).classList.add("active");
+.page {
+    display: none;
+}
 
-        }
+.page.active {
+    display: block;
+    animation: fadeIn 0.8s ease;
+}
 
-    </script>
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
 
-</body>
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* FOOTER */
+
+footer {
+    display: none;
+    background: linear-gradient(120deg, #ff1685, #ed4fa0);
+    color: white;
+    text-align: center;
+    padding: 18px 10px;
+    margin-top: 35px;
+    position: relative;
+    z-index: 3;
+    border-top: 5px solid #c90062;
+    box-shadow: 0 -5px 15px rgba(201, 0, 98, 0.15);
+}
+
+footer.show-footer {
+    display: block;
+}
+
+footer p {
+    margin: 5px 0;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+footer .footer-heart {
+    font-size: 18px;
+}
+
+/* MOBILE DESIGN */
+
+@media (max-width: 600px) {
+
+    header h1 {
+        font-size: 25px;
+        letter-spacing: 2px;
+    }
+
+    nav {
+        gap: 6px;
+        padding: 15px 5px;
+    }
+
+    nav a {
+        padding: 11px 10px;
+        font-size: 12px;
+    }
+
+    section {
+        margin: 30px 22px;
+        padding: 25px;
+    }
+
+    body::before,
+    body::after {
+        width: 100px;
+        height: 100px;
+    }
+
+    header::before,
+    header::after {
+        width: 75px;
+        height: 75px;
+    }
+
+    .my-name {
+        font-size: 27px;
+    }
+
+    .welcome-text {
+        font-size: 18px;
+    }
+
+    .intro-text {
+        font-size: 16px;
+    }
+
+    .floating-decor {
+        opacity: 0.3;
+    }
+
+    footer p {
+        font-size: 12px;
+    }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+    .floating-decor {
+        animation: none !important;
+    }
+}
+
+</style></head><body><!-- FLOATING DECORATIONS --><div class="floating-decor decor-one">♡</div>
+<div class="floating-decor decor-two">✧</div>
+<div class="floating-decor decor-three">♡</div>
+<div class="floating-decor decor-four">✦</div><!-- HEADER --><header>
+    <h1>MY PERSONAL WEBSITE</h1>
+</header><!-- NAVIGATION --><nav>
+    <a href="#home" onclick="showPage('home')">Home</a>
+    <a href="#about" onclick="showPage('about')">About Me</a>
+    <a href="#contact" onclick="showPage('contact')">Contact Me</a>
+</nav><!-- HOME PAGE --><section id="home" class="page active"><h2 class="my-name">
+    Hi, I am Arian Kate M. Estanioso!
+</h2>
+
+<p class="welcome-text">
+    Welcome to my personal website!
+</p>
+
+<div class="cute-divider">
+    ♡ ✧ ♡ ✧ ♡
+</div>
+
+<p class="intro-text">
+    Here, you can learn more about me, my interests, hobbies,
+    talents, and dreams for the future. I hope this website gives you
+    a better understanding of who I am.
+</p>
+
+<!-- ABOUT ME PREVIEW -->
+
+<div class="home-box">
+
+    <h2>ABOUT ME</h2>
+
+    <p>
+        Get to know me, my hobbies, talents, personality,
+        and the dreams I hope to achieve in the future.
+    </p>
+
+    <button onclick="showPage('about')">
+        READ MORE
+    </button>
+
+</div>
+
+<!-- CONTACT ME PREVIEW -->
+
+<div class="home-box">
+
+    <h2>CONTACT ME</h2>
+
+    <p>
+        Have questions or want to connect with me?
+        Feel free to visit my contact page.
+    </p>
+
+    <button onclick="showPage('contact')">
+        GET IN TOUCH
+    </button>
+
+</div>
+
+</section><!-- ABOUT ME PAGE --><section id="about" class="page"><h2>ABOUT ME</h2>
+
+<div class="cute-divider">
+    ♡ ✧ ♡ ✧ ♡
+</div>
+
+<p>
+    Get to know more about me through the following information.
+</p>
+
+<p>
+    <strong>Age:15</strong> 
+</p>
+
+<p>
+    <strong>Address:Purok Mary Help,Davao,City</strong> 
+</p>
+
+<p>
+    <strong>Talent:</strong>
+    My talents are singing and dancing.
+</p>
+
+<p>
+    <strong>Hobbies:</strong>
+    My hobbies include watching movies, reading books,
+    playing badminton, listening to music, and doing
+    household chores.
+</p>
+
+<p>
+    <strong>Future Profession:</strong>
+    I dream of becoming a nurse in the future because
+    I want to take care of people and help those who
+    need medical attention.
+</p>
+
+<p>
+    <strong>Life Motto:</strong>
+    "Do the best you can until you know better.
+    Then when you know better, do better."
+</p>
+
+<div class="cute-divider">
+    ♡ ✧ ♡ ✧ ♡
+</div>
+
+</section><!-- CONTACT ME PAGE --><section id="contact" class="page"><h2>CONTACT ME</h2>
+
+<div class="cute-divider">
+    ♡ ✧ ♡ ✧ ♡
+</div>
+
+<p>
+    Thank you for visiting my personal website!
+    I would be happy to connect with you.
+</p>
+
+<p>
+    
+</p>
+
+<p>
+    <strong>Email:ariankate.estanioso8102011@gmail.com</strong>
+    
+</p>
+
+<p>
+    <strong>Facebook:Arian Kate Estanios</strong>
+    
+</p>
+
+<div class="cute-divider">
+    ♡ ✧ ♡ ✧ ♡
+</div>
+
+</section><!-- FOOTER --><footer id="websiteFooter">
+    <p class="footer-heart">♡ Thank you for visiting! ♡</p>
+    <p>Made with love and creativity.</p>
+    <p>© 2026 My Personal Website. All Rights Reserved.</p>
+</footer><!-- JAVASCRIPT --><script>
+
+function showPage(pageId) {
+
+    let pages = document.querySelectorAll(".page");
+
+    pages.forEach(function(page) {
+        page.classList.remove("active");
+    });
+
+    document.getElementById(pageId).classList.add("active");
+
+    let footer = document.getElementById("websiteFooter");
+
+    if (pageId === "contact") {
+        footer.classList.add("show-footer");
+    } else {
+        footer.classList.remove("show-footer");
+    }
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+}
+
+</script></body>
 </html>
